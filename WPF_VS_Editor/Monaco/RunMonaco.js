@@ -1,4 +1,4 @@
- function buildEditor(text) {
+function buildEditor(text) {
     const editor = monaco.editor.create(document.getElementById('container'), {
         theme: 'vs-dark',
         value: text,
@@ -6,14 +6,8 @@
         name: 'monacoEditor'
     });
 
-     editor.getModel().onDidChangeContent((event) => {
-         //console.log("CHANGE", editor.getValue());
-         window.chrome.webview.postMessage(editor.getValue());
-     });
-
-    return editor;
+    editor.getModel().onDidChangeContent((event) => {
+        window.chrome.webview.postMessage(editor.getValue());
+    });
 }
-
- function getText() {
-    return editor.getValue();
-}
+ 
